@@ -17,9 +17,8 @@ RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 RUN source ~/.bashrc
 RUN yum install unixODBC-devel -y
-
-COPY ./requirements.txt /usr/src/app/requirements.txt
-COPY ./app/ /usr/src/app
+RUN mkdir -p /usr/src/app
+COPY ./* /usr/src/app/
 WORKDIR /usr/src/app
 RUN pip3.8 install --no-cache-dir -r requirements.txt
 EXPOSE 8000
